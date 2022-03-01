@@ -32,10 +32,8 @@ public class Main {
         // Отсортированный по фамилии список потенциально работоспособных людей с высшим образованием
         Collection<Person> ableBodied = persons.stream()
                 .filter(person -> person.getEducation() == Education.HIGHER)
-                .filter(person -> person.getSex() == Sex.MAN && person.getAge() >= 18)
-                .filter(person -> person.getSex() == Sex.MAN && person.getAge() <= 65)
-                .filter(person -> person.getSex() == Sex.WOMAN && person.getAge() >= 18)
-                .filter(person -> person.getSex() == Sex.WOMAN && person.getAge() <= 60)
+                .filter(person -> person.getSex() == Sex.MAN ? person.getAge() >= 18 && person.getAge() <= 65
+                        : person.getAge() >= 18 && person.getAge() <= 60)
                 .sorted(Comparator.comparing(Person::getFamily))
                 .collect(Collectors.toList());
     }
